@@ -17,9 +17,7 @@
 //--------------------------------------------
 // Author: Joseph Kehoe (Joseph.Kehoe@setu.ie)
 // Created on 30/9/2024
-// Modified by:
-// Issues:
-// The barrier is not implemented!
+// Modified by: Temur Rustamov C00280204
 //--------------------------------------------
 
 package main
@@ -37,7 +35,6 @@ import (
 func doStuff(totalRoutines int, goNum int, wg *sync.WaitGroup, total *atomic.Int64, theLock *sync.Mutex, c *chan struct{}) bool {
 
 	fmt.Println("Part A", goNum)
-	//fmt.Println(int64(totalRoutines-1), total.Load())
 	time.Sleep(time.Second)
 	theLock.Lock()
 	total.Add(1)
@@ -65,38 +62,17 @@ func main() {
 	totalRoutines := 10
 	var wg sync.WaitGroup
 	wg.Add(totalRoutines)
-	//we will need some of these
 
-	//ctx := context.TODO()
 	var theLock sync.Mutex
-	//sem := semaphore.NewWeighted(int64(totalRoutines))
+
 	theLock.Lock()
-	//sem.Acquire(ctx, 1)
 
-	//c := make(chan struct{})
-
-	//for i := range totalRoutines {//create the go Routines here
-	//	go doStuff(totalRoutines, i, &wg, &total, &theLock)
-	//}
 	c := make(chan struct{})
 	for i := 0; i < totalRoutines; i++ {
 		go doStuff(totalRoutines, i, &wg, &total, &theLock, &c)
-		//if(totalRoutines -1 == total){
-		//	<- c
-		//} else {
-		//	c <- struct{}{}
-		//}
-
 	}
-	//sem.Release(1)
 	theLock.Unlock()
 
 	wg.Wait() //wait for everyone to finish before exiting
 
 }
-
-// for c {
-// fmt.pritnln(c)
-//
-
-// select
