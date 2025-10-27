@@ -1,6 +1,4 @@
 # Author: Temur Rustamov
-
-### Lab 1: Simple Barrier Implementation
+### Lab 2: Mutex and Channel-Based Barrier
 #### Notes:
-> Here I have demonstrated a simple barrier implementation using channels and an atomic variable. There is a predefined number of threads that first of all do the 1st process, then they all wait except the last one who reads all messages from the channel, so they all could start working on the 2nd process. 
-
+> Here is a demonstration of reusable barrier using  atomic counters, mutex locks and an unbuffered channel. Each goroutine completes Part A then synchronizes at the barrier by incrementing a shared atomic counter. The last arriving goroutine signals others via the channel so all routines can proceed together to Part B. The barrier becomes reusable if we reset channel, counter so the group of goroutines to wait for each other multiple times before continuing execution.
