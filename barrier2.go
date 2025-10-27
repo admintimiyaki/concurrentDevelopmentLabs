@@ -17,7 +17,7 @@
 //--------------------------------------------
 // Author: Joseph Kehoe (Joseph.Kehoe@setu.ie)
 // Created on 30/9/2024
-// Modified by:
+// Modified by: Temur Rustamov C00280204
 // Description:
 // A simple barrier implemented using mutex and unbuffered channel
 // Issues:
